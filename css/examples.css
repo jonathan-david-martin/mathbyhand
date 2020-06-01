@@ -180,7 +180,7 @@ select:focus {
 
 #editor {
     width: 100vw;
-    height: calc(40vh - 152px);
+    height: calc(40vh - 100px);
     touch-action: none;
 }
 
@@ -205,8 +205,9 @@ select:focus {
 }
 
 #result {
-    height: 100px;
-    display: flex;
+    height: 50px;
+    /*display: flex;*/
+    display: none;
     justify-content: center;
     align-items: center;
     overflow: auto;
@@ -214,7 +215,7 @@ select:focus {
 
 #result span {
     margin: auto;
-    font-size: xx-large;
+    font-size: large;
 }
 
 /*** Index page ***/
@@ -482,7 +483,7 @@ select:focus {
 
 .nav-btn > img {
     display: block;
-    width: 50%;
+    width: 40%;
     margin: 2px auto;
 }
 
@@ -497,13 +498,13 @@ select:focus {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
 }
 .nav-btn.btn-fab {
-    width: 23px;
-    height: 23px;
+    width: 35px;
+    height: 28px;
     font-size: 28px;
 }
 .nav-btn.btn-fab-mini {
-    width: 40px;
-    height: 20px;
+    width: 35px;
+    height: 28px;
     font-size: 24px;
 }
 

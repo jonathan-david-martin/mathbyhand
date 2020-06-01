@@ -29,7 +29,7 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <h4>Write an equation in terms of x and y that has a slope of 1, and a y intercept of 0</h4>
+        <h4 id="mainquestion">Write an equation in terms of x and y that has a slope of 1, and a y intercept of 0</h4>
      </div>
     </div>
 
@@ -88,15 +88,40 @@
           <form id="form">
             <label form="eq">Answer:</label>
             <input type="text" id="eq" value="" />
-            <input type="submit" value="Draw" />
+            <input type="submit" value="Submit" />
           </form>
+          <button type="button" id="nextbutton" hidden="true" onclick="loadNextQuestion()">Next</button>
         </div>
+
+        <script>
+          function loadNextQuestion(){
+            questionNumber++;
+            document.getElementById('mainquestion').innerText = 'Write an equation where y increases at twice the rate of x';
+            document.getElementById('answercheck').innerText = '';
+            document.getElementById('nextbutton').hidden = true;
+            document.getElementById('eq').value = '';
+            editorElement.editor.clear();
+          }
+        </script>
 
 
       </div>
 
         <div class="row">
-          <div id="plot"></div>
+          <div class="col-sm-4">
+            <div id="plot"></div>
+          </div>
+
+          <div class="col-sm-3">
+            <div id='answercheck'>
+              <h3></h3>
+            </div>
+          </div>
+
+          <div class="col-sm-5">
+            <div></div>
+          </div>
+
         </div>
 
       </div>
@@ -114,7 +139,13 @@
       var redoElement = document.getElementById('redo');
       var clearElement = document.getElementById('clear');
       var convertElement = document.getElementById('convert');
-
+      var equation;
+      var questionNumber = 1;
+      var nextQuestion;
+      console.log(editor);
+      console.log(editorElement);
+      console.log(convertElement);
+      console.log(resultElement);
       convertElement.hidden = true;
 
       editorElement.addEventListener('changed', function (event) {
@@ -150,7 +181,7 @@
         console.log(exports['application/x-latex']);
         console.log(exports['application/mathml+xml']);
         console.log(exports['application/mathofficeXML']);
-        let equation = exports['application/x-latex'];
+        equation = exports['application/x-latex'];
         equation = equation.replace("{", "(");
         equation = equation.replace("}", ")");
         document.getElementById('eq').value = equation;
@@ -239,15 +270,15 @@
           }
           const data = [trace1]
           const layout = {
-            autosize: false,
-            width: 300,
-            height: 300,
+            autosize: true,
+            width: 250,
+            height: 250,
             margin: {
               l: 20,
               r: 20,
               b: 20,
               t: 20,
-              pad: 4
+              pad: 2
             },
 
           };
@@ -259,8 +290,59 @@
         }
       }
 
+      document.getElementById('nextbutton').onsubmit = function (event) {
+        console.log('nextquestion');
+        document.getElementById('mainQuestion').innerText = 'next';
+
+      }
+
+
       document.getElementById('form').onsubmit = function (event) {
         event.preventDefault()
+        if (questionNumber === 1) {
+            if (equation === 'y=x') {
+              /*
+            const yourNewPenStyle = {
+              color: '#F70000',
+            }
+
+            editorElement.penStyle = yourNewPenStyle
+            editorElement.themecolor = '#008000';
+            console.log(editorElement);
+             */
+              var answerCheck = document.getElementById('answercheck');
+              var buttonNext = document.getElementById('nextbutton');
+              buttonNext.hidden = false;
+              answerCheck.innerText = 'CORRECT!';
+              answerCheck.style.color = "green";
+              answerCheck.fontWeight = "bold";
+              //console.log('correct answer');
+
+            } else {
+              var answerCheck = document.getElementById('answercheck');
+              answerCheck.innerText = 'TRY AGAIN!';
+              answerCheck.style.color = "red";
+              answerCheck.fontWeight = "bold";
+            }
+          } else if (questionNumber === 2) {
+            if (equation === 'y=2x') {
+              var answerCheck = document.getElementById('answercheck');
+              var buttonNext = document.getElementById('nextbutton');
+              buttonNext.hidden = false;
+              answerCheck.innerText = 'CORRECT!';
+              answerCheck.style.color = "green";
+              answerCheck.fontWeight = "bold";
+              //console.log('correct answer');
+
+            } else {
+              var answerCheck = document.getElementById('answercheck');
+              answerCheck.innerText = 'TRY AGAIN!';
+              answerCheck.style.color = "red";
+              answerCheck.fontWeight = "bold";
+            }
+          }
+
+
         draw()
       }
 
