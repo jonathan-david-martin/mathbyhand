@@ -180,7 +180,7 @@ select:focus {
 
 #editor {
     width: 100vw;
-    height: calc(50vh - 152px);
+    height: calc(40vh - 152px);
     touch-action: none;
 }
 
