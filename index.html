@@ -111,7 +111,7 @@
       </div>
 
         <div class="row">
-          
+
           <div class="col-sm-2">
             <div id='answercheck'>
               <h3></h3>
@@ -120,7 +120,7 @@
 
           <div class="col-sm-8">
             <!--<div id="calculator" style="width: 600px; height: 400px;"></div>-->
-            <div id="calculator" style="height: 600px; width:100%"></div>
+            <div id="calculator" style="height: 650px; width:100%"></div>
 
           </div>
 
@@ -268,14 +268,15 @@
         yAxisStep: 1,
         xAxisMinorSubdivisions: 1,
         yAxisMinorSubdivisions: 1,
-        labelSize: Desmos.LabelSizes.SMALL
+        autosize: false
+        //labelSize: Desmos.LabelSizes.SMALL
         //fontSize: 9
       });
       calculator.setMathBounds({
-        left: -5,
-        right: 5,
-        bottom: -5,
-        top: 5
+        left: -4,
+        right: 4,
+        bottom: -4,
+        top: 4
       });
       //calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
 
