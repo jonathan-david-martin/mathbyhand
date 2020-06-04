@@ -21,6 +21,8 @@
     <script src="https://unpkg.com/mathjs@7.0.1/dist/math.min.js"></script>
 
     <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+    <script src="https://www.desmos.com/api/v1.5/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
   </head>
 
   <body>
@@ -101,6 +103,7 @@
             document.getElementById('nextbutton').hidden = true;
             document.getElementById('eq').value = '';
             editorElement.editor.clear();
+            calculator.setExpression({ id: 'graph1', latex: '' });
           }
         </script>
 
@@ -108,17 +111,19 @@
       </div>
 
         <div class="row">
-          <div class="col-sm-4">
-            <div id="plot"></div>
+          <div class="col-sm-8">
+            <!--<div id="calculator" style="width: 600px; height: 400px;"></div>-->
+            <div id="calculator" style="height: 600px; width:100%"></div>
+
           </div>
 
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <div id='answercheck'>
               <h3></h3>
             </div>
           </div>
 
-          <div class="col-sm-5">
+          <div class="col-sm-2">
             <div></div>
           </div>
 
@@ -182,8 +187,8 @@
         console.log(exports['application/mathml+xml']);
         console.log(exports['application/mathofficeXML']);
         equation = exports['application/x-latex'];
-        equation = equation.replace("{", "(");
-        equation = equation.replace("}", ")");
+        //equation = equation.replace("{", "(");
+        //equation = equation.replace("}", ")");
         document.getElementById('eq').value = equation;
 
         if (exports && exports['application/x-latex']) {
@@ -212,7 +217,6 @@
       });
       convertElement.addEventListener('click', function () {
         editorElement.editor.convert();
-        draw();
       });
 
       /**
@@ -250,45 +254,28 @@
     </script>
 
     <script>
-      function draw() {
-        try {
-          // compile the expression once
-          const expression = document.getElementById('eq').value
-          const expr = math.compile(expression)
 
-          // evaluate the expression repeatedly for different values of x
-          const xValues = math.range(-10, 10, 0.5).toArray()
-          const yValues = xValues.map(function (x) {
-            return expr.evaluate({x: x})
-          })
+      var elt = document.getElementById('calculator');
+      var calculator = Desmos.GraphingCalculator(elt,'yAxisNumbers:true');
+      calculator.updateSettings({
+        //xAxisLabel: 'Time',
+        //xAxisNumbers: false,
+        //yAxisNumbers: false,
+        xAxisStep: 1,
+        yAxisStep: 1,
+        xAxisMinorSubdivisions: 1,
+        yAxisMinorSubdivisions: 1,
+        labelSize: Desmos.LabelSizes.SMALL
+        //fontSize: 9
+      });
+      calculator.setMathBounds({
+        left: -5,
+        right: 5,
+        bottom: -5,
+        top: 5
+      });
+      //calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
 
-          // render the plot using plotly
-          const trace1 = {
-            x: xValues,
-            y: yValues,
-            type: 'scatter'
-          }
-          const data = [trace1]
-          const layout = {
-            autosize: true,
-            width: 250,
-            height: 250,
-            margin: {
-              l: 20,
-              r: 20,
-              b: 20,
-              t: 20,
-              pad: 2
-            },
-
-          };
-          Plotly.newPlot('plot', data,layout)
-        }
-        catch (err) {
-          console.error(err)
-          alert(err)
-        }
-      }
 
       document.getElementById('nextbutton').onsubmit = function (event) {
         console.log('nextquestion');
@@ -299,6 +286,17 @@
 
       document.getElementById('form').onsubmit = function (event) {
         event.preventDefault()
+        calculator.setExpression({ id: 'graph1', latex: equation });
+        calculator.updateSettings({
+          //xAxisLabel: 'Time',
+          //yAxisNumbers: true,
+          xAxisStep: 1,
+          yAxisStep: 1
+          //xAxisMinorSubdivisions: 0,
+          //yAxisMinorSubdivisions: 0
+
+
+        });
         if (questionNumber === 1) {
             if (equation === 'y=x') {
               /*
@@ -316,7 +314,8 @@
               answerCheck.innerText = 'CORRECT!';
               answerCheck.style.color = "green";
               answerCheck.fontWeight = "bold";
-              //console.log('correct answer');
+              //calculator.setExpression({ id: 'graph1', latex: '' });
+
 
             } else {
               var answerCheck = document.getElementById('answercheck');
@@ -342,11 +341,8 @@
             }
           }
 
-
-        draw()
       }
 
-      draw()
     </script>
 
   </body>
