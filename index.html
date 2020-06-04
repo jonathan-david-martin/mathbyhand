@@ -32,8 +32,8 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <h4 id="mainquestion">Write an equation that models the proportional relationship of buying oranges where 5 oranges cost $5.00. (use y for cost and x for # or oranges);
-        </h4>
+        <h5 id="mainquestion"><div id="mainQReg">Write an equation that models the proportional relationship of buying oranges where 5 oranges cost $5.00. </div><div id="mainQItal"><i id="i">(use y for cost and x for # or oranges)</i></div>
+        </h5>
      </div>
     </div>
 
@@ -100,7 +100,12 @@
         <script>
           function loadNextQuestion(){
             questionNumber++;
-            document.getElementById('mainquestion').innerText = 'Write an equation that models the proportional relationship of buying oranges where 6 oranges cost $3.00. (use y for cost and x for # or oranges)';
+            document.getElementById('mainQReg').innerHTML = 'Write an equation that models the proportional relationship of buying oranges where 6 oranges cost $3.00.';
+            //document.getElementById('mainQItal').innerHTML = '(use y for cost and x for # or oranges)';
+
+
+            //document.getElementById('i').innerHTML = '(use y for cost and x for # or oranges)';
+
             document.getElementById('answercheck').innerText = '';
             document.getElementById('nextbutton').hidden = true;
             document.getElementById('eq').value = '';
