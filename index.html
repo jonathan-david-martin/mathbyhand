@@ -31,7 +31,9 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <h4 id="mainquestion">Write an equation in terms of x and y that has a slope of 1, and a y intercept of 0</h4>
+
+        <h4 id="mainquestion">Write an equation that models the proportional relationship of buying oranges where 5 oranges cost $5.00. (use y for cost and x for # or oranges);
+        </h4>
      </div>
     </div>
 
@@ -98,7 +100,7 @@
         <script>
           function loadNextQuestion(){
             questionNumber++;
-            document.getElementById('mainquestion').innerText = 'Write an equation where y increases at twice the rate of x';
+            document.getElementById('mainquestion').innerText = 'Write an equation that models the proportional relationship of buying oranges where 6 oranges cost $3.00. (use y for cost and x for # or oranges)';
             document.getElementById('answercheck').innerText = '';
             document.getElementById('nextbutton').hidden = true;
             document.getElementById('eq').value = '';
@@ -328,7 +330,7 @@
               answerCheck.fontWeight = "bold";
             }
           } else if (questionNumber === 2) {
-            if (equation === 'y=2x') {
+            if (equation === 'y=0.5x' || equation === 'y=.5x') {
               var answerCheck = document.getElementById('answercheck');
               var buttonNext = document.getElementById('nextbutton');
               buttonNext.hidden = false;
