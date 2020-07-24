@@ -98,6 +98,17 @@
         </div>
 
         <script>
+          class Quiz {
+            constructor() {
+              this.questionBank = [];
+            }
+            addQuestion(questionString, graphIdent, latexAnswer) {
+              this.questionBank.push(questionString, graphIdent, latexAnswer);
+            }
+          }
+
+          var quiz1 = new Quiz('math');
+
           function loadNextQuestion(){
             questionNumber++;
             document.getElementById('mainQReg').innerHTML = 'Write an equation that models the proportional relationship of buying oranges where 6 oranges cost $3.00.';
