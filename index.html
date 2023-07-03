@@ -17,7 +17,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js" integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-    <script type="text/javascript" src="./dist/myscript.min.js"></script>
+    <script type="text/javascript" src="../dist/iink.min.js"></script>
     <script src="https://unpkg.com/mathjs@7.0.1/dist/math.min.js"></script>
 
     <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
@@ -245,20 +245,19 @@
        * @param {Element} The DOM element to attach the ink paper
        * @param {Object} The recognition parameters
        */
-      MyScript.register(editorElement, {
+       iink.register(editorElement, {
         recognitionParams: {
           type: 'MATH',
           protocol: 'WEBSOCKET',
-          apiVersion: 'V4',
           server: {
             scheme: 'https',
             host: 'webdemoapi.myscript.com',
-            applicationKey: 'ffb141c9-26fe-436b-8fcd-af9934ef7493',
-            hmacKey: 'c3cf4927-914c-4533-a09c-01b532c45bf0'
+            applicationKey: 'e0d321ec-33fd-4506-b3d4-0cecce4eec56',
+            hmacKey: 'e1bf13da-49d6-43b0-b1ba-6cb4b12a87a5'
           },
-          v4: {
+          iink: {
             math: {
-              mimeTypes: ['application/x-latex', 'application/vnd.myscript.jiix']
+              mimeTypes: ['application/x-latex', 'application/vnd.myscript.jiix', 'application/mathml+xml']
             },
             export: {
               jiix: {
