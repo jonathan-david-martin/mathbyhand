@@ -277,6 +277,11 @@
 
       var elt = document.getElementById('calculator');
       var calculator = Desmos.GraphingCalculator(elt,'yAxisNumbers:true');
+
+      function returnText(){
+        return "got text";
+      }
+
       calculator.updateSettings({
         //xAxisLabel: 'Time',
         //xAxisNumbers: false,
@@ -332,7 +337,7 @@
               var answerCheck = document.getElementById('answercheck');
               var buttonNext = document.getElementById('nextbutton');
               buttonNext.hidden = false;
-              answerCheck.innerText = 'CORRECT!';
+              answerCheck.innerText = "CORRECT!";
               answerCheck.style.color = "green";
               answerCheck.fontWeight = "bold";
               //calculator.setExpression({ id: 'graph1', latex: '' });
