@@ -41,7 +41,7 @@ nav {
     border-radius: 3px;
     -webkit-appearance: none;
     color: #060607;
-    /*background: #fff none;*/
+    background: #fff none;
     border: 1px solid #d2d6d7;
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.08);
     transition: border-color 125ms;
@@ -183,7 +183,6 @@ select:focus {
     width: 100vw;
     height: calc(40vh - 100px);
     touch-action: none;
-    background: transparent;
 }
 
 /*** Interact page ***/
